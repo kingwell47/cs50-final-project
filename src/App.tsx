@@ -4,21 +4,20 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import History from "./pages/History";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>Hello World</h1>
-        <p>Some Navbar</p>
-      </div>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/history" element={<History />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
+        </Routes>
+      </Layout>
     </>
   );
 }
