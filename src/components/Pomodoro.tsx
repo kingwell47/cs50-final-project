@@ -18,6 +18,8 @@ const Pomodoro = () => {
   const [workMinutes, setWorkMinutes] = useState(25);
   const [breakminutes, setBreakMinutes] = useState(5);
 
+  // https://www.youtube.com/watch?v=B1tjrnX160k
+
   useEffect(() => {
     function switchMode() {
       // Determine what the next mode is
@@ -54,41 +56,22 @@ const Pomodoro = () => {
   const minutes = Math.floor(secondsLeft / 60);
   const seconds = secondsLeft % 60;
 
-  const style = {
-    "--value": percentage,
-    "--size": "24rem",
-    "--thickness": "1rem",
-  };
-
   return (
-    <div>
-      <div
-        title={mode}
-        className={`radial-progress text-4xl flex flex-col gap-4 justify-center items-center ${
-          mode === "work" ? "text-secondary" : "text-primary"
-        }`}
-        style={style as React.CSSProperties}
-        aria-valuenow={percentage}
-        role='progressbar'>
+    <div
+      className={`flex flex-col justify-center items-center gap-4 ${
+        mode === "work" ? "text-primary" : "text-success"
+      }`}>
+      <label htmlFor='progress' className='text-4xl font-bold'>
         {minutes}:{seconds < 10 ? "0" + seconds : seconds}
-        <div className='flex text-center justify-center items-center'>
-          <button className='btn btn-circle size-10 bg-accent-content p-2'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth='2.5'
-              stroke='currentColor'
-              className='size-20'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z'
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+      </label>
+      <progress
+        className={`progress w-56 h-5 ${
+          mode === "work" ? "progress-primary" : "progress-success"
+        }`}
+        value={percentage}
+        max='100'
+        id='progress'
+      />
     </div>
   );
 };
