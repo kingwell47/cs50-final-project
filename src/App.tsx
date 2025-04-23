@@ -8,17 +8,17 @@ import Layout from "./components/Layout";
 
 function App() {
   return (
-    <>
+    <main>
       <Layout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/history" element={<History />} />
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/register' element={<Registration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/history' element={<History />} />
         </Routes>
       </Layout>
-    </>
+    </main>
   );
 }
 
