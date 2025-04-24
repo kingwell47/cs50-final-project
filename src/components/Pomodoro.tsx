@@ -94,7 +94,7 @@ const Pomodoro = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center gap-4 ${
+      className={`flex flex-col justify-center items-center gap-4 mt-4 ${
         mode === "work" ? "text-primary" : "text-success"
       }`}
     >

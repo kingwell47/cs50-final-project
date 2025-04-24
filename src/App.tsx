@@ -8,14 +8,14 @@ import Layout from "./components/Layout";
 
 function App() {
   return (
-    <main>
+    <main className="flex flex-col justify-center items-center">
       <Layout>
         <Routes>
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/register' element={<Registration />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/history' element={<History />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </Layout>
     </main>
