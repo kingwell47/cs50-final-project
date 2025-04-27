@@ -94,7 +94,7 @@ const Pomodoro = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center gap-4 mt-4 px-4 ${
+      className={`flex flex-col justify-center items-center gap-4 mt-4 p-4 bg-base-200 border-base-300 rounded-box border ${
         mode === "work" ? "text-primary" : "text-success"
       }`}
     >
@@ -114,6 +114,9 @@ const Pomodoro = () => {
         role="progressbar"
       >
         {minutes}:{seconds < 10 ? "0" + seconds : seconds}
+        <span className="text-xl text-center font-normal mt-4">
+          {mode === "work" ? "Work!" : "Take a break!"}
+        </span>
       </div>
       <div>
         {isPaused ? (
