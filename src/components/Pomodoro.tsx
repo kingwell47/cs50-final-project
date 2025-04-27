@@ -94,11 +94,11 @@ const Pomodoro = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center gap-4 mt-4 p-4 bg-base-200 border-base-300 rounded-box border ${
+      className={`flex flex-col justify-center items-center gap-4 mt-4 p-4 bg-base-200 border-base-300 rounded-box border w-xs ${
         mode === "work" ? "text-primary" : "text-success"
       }`}
     >
-      <h1 className="font-bold text-4xl text-center mb-4 text-base-content">
+      <h1 className="font-bold text-2xl text-center mb-4 text-base-content">
         Pomodoro Timer
       </h1>
       <div
