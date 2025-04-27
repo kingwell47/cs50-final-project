@@ -30,7 +30,11 @@ export const useTimerStore = create(
 
       start: () => set({ isPaused: false }),
       pause: () => set({ isPaused: true }),
-      reset: () => {},
+      reset: () => {
+        const { mode, workMinutes, breakMinutes } = get();
+        const seconds = (mode === "work" ? workMinutes : breakMinutes) * 60;
+        set({ secondsLeft: seconds, isPaused: true });
+      },
 
       setWorkMinutes: (minutes) => set({ workMinutes: minutes }),
       setBreakMinutes: (minutes) => set({ breakMinutes: minutes }),

@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Pomodoro from "./components/Pomodoro";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import TimerTicker from "./components/TimerTicker";
 import GlobalTimer from "./components/GlobalTimer";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <h1>Hello World</h1>
         <GlobalTimer />
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
         </Routes>
