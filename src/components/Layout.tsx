@@ -4,10 +4,12 @@ import Pomodoro from "./Pomodoro";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       <NavBar />
-      <Pomodoro />
-      <div className="flex flex-col items-center">{children}</div>
+      <div className="flex flex-col md:flex-row md:w-full justify-around items-center lg:h-full gap-10 py-10 ">
+        <Pomodoro />
+        {children}
+      </div>
     </div>
   );
 };

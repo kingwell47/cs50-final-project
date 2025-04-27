@@ -8,7 +8,7 @@ import Layout from "./components/Layout";
 
 function App() {
   return (
-    <main className="flex flex-col justify-center items-center">
+    <main className="flex flex-col justify-center items-center md:h-lvh">
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />

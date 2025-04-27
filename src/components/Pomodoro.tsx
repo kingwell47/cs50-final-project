@@ -25,7 +25,7 @@ const Pomodoro = () => {
       // Determine what the next mode is
       const nextMode = modeRef.current === "work" ? "break" : "work";
       const nextSeconds =
-        (nextMode === "work" ? workMinutes : breakminutes) * 60;
+        (nextMode === "work" ? workMinutes : breakMinutes) * 60;
 
       // Set the next mode
       setMode(nextMode);
@@ -94,30 +94,27 @@ const Pomodoro = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center gap-4 mt-4 ${
+      className={`flex flex-col justify-center items-center gap-4 mt-4 px-4 ${
         mode === "work" ? "text-primary" : "text-success"
       }`}
     >
-      <div className="flex justify-between items-center gap-6">
-        <label htmlFor="progress" className="text-4xl font-bold">
-          {minutes}:{seconds < 10 ? "0" + seconds : seconds}
-        </label>
+      <h1 className="font-bold text-4xl text-center mb-4 text-base-content">
+        Pomodoro Timer
+      </h1>
+      <div
+        className="radial-progress text-6xl font-bold"
+        style={
+          {
+            "--value": `${percentage}`,
+            "--size": "16rem",
+            "--thickness": "1.5rem",
+          } as React.CSSProperties
+        }
+        aria-valuenow={percentage}
+        role="progressbar"
+      >
+        {minutes}:{seconds < 10 ? "0" + seconds : seconds}
       </div>
-      {isPaused && (
-        <div className="flex justify-between items-center gap-6">
-          <div className="text-2xl font-bold text-success">
-            {breakMinutes}:00
-          </div>
-        </div>
-      )}
-      <progress
-        className={`progress w-56 h-5 ${
-          mode === "work" ? "progress-primary" : "progress-success"
-        }`}
-        value={percentage}
-        max="100"
-        id="progress"
-      />
       <div>
         {isPaused ? (
           <PlayButton
