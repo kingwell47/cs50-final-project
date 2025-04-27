@@ -90,17 +90,19 @@ const GlobalTimer = () => {
         aria-valuenow={percentage}
         role="progressbar"
       >
-        {minutes}:{seconds}
-      </div>
-      <div className="flex items-center justify-center gap-4">
-        {isPaused ? (
-          <>
-            <PlayButton onClick={start} />
-            <ResetButton onClick={reset} />
-          </>
-        ) : (
-          <PauseButton onClick={pause} />
-        )}
+        <p className="mb-10">
+          {minutes}:{seconds}
+        </p>
+        <span className="flex items-center justify-center gap-4 z-10">
+          {isPaused ? (
+            <>
+              <PlayButton onClick={start} />
+              <ResetButton onClick={reset} />
+            </>
+          ) : (
+            <PauseButton onClick={pause} />
+          )}
+        </span>
       </div>
     </div>
   );
