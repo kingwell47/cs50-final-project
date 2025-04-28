@@ -77,13 +77,13 @@ const GlobalTimer = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4 w-xs">
       <div
-        className="radial-progress text-primary text-8xl"
+        className="radial-progress text-primary text-6xl"
         style={
           {
             "--value": `${percentage}`,
-            "--size": "24rem",
+            "--size": "18rem",
             "--thickness": "1.5rem",
           } /* as React.CSSProperties */
         }

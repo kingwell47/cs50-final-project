@@ -4,21 +4,23 @@ import Registration from "./pages/Registration";
 import TimerTicker from "./components/TimerTicker";
 import GlobalTimer from "./components/GlobalTimer";
 import Dashboard from "./pages/Dashboard";
+import NavBar from "./components/NavBar";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <TimerTicker />
       <main>
-        <h1>Hello World</h1>
-        <GlobalTimer />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+          </Routes>
+        </Layout>
       </main>
-    </BrowserRouter>
+    </>
   );
 }
 
