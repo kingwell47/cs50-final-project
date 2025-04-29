@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { auth } from "../lib/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { db } from "../lib/firebase";
 import { useAuthStore } from "../store/useAuthStore.js";
 
 const Registration = () => {
@@ -69,7 +66,7 @@ const Registration = () => {
       />
 
       <button className="btn btn-neutral mt-4" onClick={createUser}>
-        Create Account
+        {isSigningUp ? "Creating Account" : "Create Account"}
       </button>
     </fieldset>
   );

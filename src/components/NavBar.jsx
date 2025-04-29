@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuthStore } from "../store/useAuthStore";
 
 const NavBar = () => {
+  const { authUser, logout } = useAuthStore();
+
   return (
     <nav className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
@@ -8,8 +11,13 @@ const NavBar = () => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
+          {authUser && (
+            <li>
+              <a>signedIn</a>
+            </li>
+          )}
           <li>
-            <a>Link</a>
+            <a onClick={logout}>Logout</a>
           </li>
           <li>
             <details>
