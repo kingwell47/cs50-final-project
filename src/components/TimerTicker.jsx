@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTimerStore } from "../lib/timerStore";
+import { useTimerStore } from "../store/timerStore";
 
 const TimerTicker = () => {
   const tick = useTimerStore((state) => state.tick);

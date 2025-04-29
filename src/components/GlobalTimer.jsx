@@ -1,4 +1,4 @@
-import { useTimerStore } from "../lib/timerStore";
+import { useTimerStore } from "../store/timerStore";
 
 const GlobalTimer = () => {
   const {
