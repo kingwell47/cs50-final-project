@@ -5,12 +5,33 @@ import {
   signOut,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export const useAuthStore = create((set) => ({
   authUser: null,
   isSigningUp: false,
   isLoggingIn: false,
+  isLoading: true,
+
+  // Get user
+  getUser: async (uid) => {
+    if (!uid) return set({ authUser: null, isLoading: false });
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+
+    try {
+      if (docSnap.exists()) {
+        set({
+          authUser: docSnap.data(),
+          isLoading: false,
+        });
+      } else {
+        set({ authUser: null, isLoading: false });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
 
   // Signing up
   signup: async (data) => {
@@ -44,12 +65,12 @@ export const useAuthStore = create((set) => ({
   login: async (data) => {
     set({ isLoggingIn: true });
     try {
-      const res = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
+      await signInWithEmailAndPassword(auth, data.email, data.password).then(
+        (cred) => {
+          console.log(cred.user.uid);
+          return set({ authUser: cred.user.uid });
+        }
       );
-      set({ authUser: res.user });
     } catch (error) {
       console.error(error);
     } finally {
