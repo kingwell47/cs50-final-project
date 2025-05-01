@@ -12,9 +12,14 @@ const NavBar = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           {user && (
-            <li>
-              <a onClick={logout}>Logout</a>
-            </li>
+            <>
+              <li>
+                <a>{user.email}</a>
+              </li>
+              <li>
+                <a onClick={logout}>Logout</a>
+              </li>
+            </>
           )}
 
           <li>
