@@ -13,6 +13,10 @@ const useAuthStore = create((set) => ({
   loading: true,
   error: null,
 
+  setError: (message) => {
+    set({ error: message });
+  },
+
   checkAuth: () => {
     set({ loading: true });
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -35,7 +39,7 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  register: async (username, email, password) => {
+  register: async (displayName, email, password) => {
     set({ loading: true, error: null });
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -45,7 +49,7 @@ const useAuthStore = create((set) => ({
       );
       // Create a db entry for the user
       setDoc(doc(db, "users", userCredential.user.uid), {
-        username: username,
+        displayName,
       });
       set({ user: userCredential.user, loading: false });
     } catch (error) {

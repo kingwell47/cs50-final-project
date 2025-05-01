@@ -8,7 +8,7 @@ import useAuthStore from "./store/authStore";
 import { useEffect } from "react";
 
 function App() {
-  const { user, loading, checkAuth, logout, error } = useAuthStore();
+  const { user, loading, checkAuth } = useAuthStore();
 
   useEffect(() => {
     const unsub = checkAuth();
@@ -26,12 +26,11 @@ function App() {
         ) : (
           <p>Please login or register.</p>
         )}
-        {error && <p>{error}</p>}
         <Layout>
           <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Registration />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
           </Routes>
         </Layout>
       </main>
