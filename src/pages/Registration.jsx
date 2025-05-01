@@ -28,7 +28,6 @@ const Registration = () => {
       return setError("Passwords do not match");
     return true;
   };
-  // Confirm Password Check
 
   // Create user
   const handleSubmit = (e) => {
@@ -40,78 +39,74 @@ const Registration = () => {
       register(formData.displayName, formData.email, formData.password);
     }
   };
-  // Get userId
-
-  // Add user to userDB
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-        <legend className="fieldset-legend">Register</legend>
-        <label className="label">Display Name</label>
-        <input
-          type="input"
-          className="input"
-          required
-          placeholder="Display Name"
-          pattern="[A-Za-z][A-Za-z0-9\-]*"
-          minLength="3"
-          maxLength="30"
-          title="Only letters, numbers or dash"
-          onChange={(e) =>
-            setFormData({ ...formData, displayName: e.target.value })
-          }
-        />
+    <fieldset
+      onSubmit={handleSubmit}
+      className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+    >
+      <legend className="fieldset-legend">Register</legend>
+      <label className="label">Display Name</label>
+      <input
+        type="input"
+        className="input"
+        required
+        placeholder="Display Name"
+        pattern="[A-Za-z][A-Za-z0-9\-]*"
+        minLength="3"
+        maxLength="30"
+        title="Only letters, numbers or dash"
+        onChange={(e) =>
+          setFormData({ ...formData, displayName: e.target.value })
+        }
+      />
 
-        <label className="label">Email</label>
-        <input
-          type="email"
-          className="input validator"
-          placeholder="Email"
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          required
-        />
-        <p className="validator-hint">Please enter a valid email.</p>
+      <label className="label">Email</label>
+      <input
+        type="email"
+        className="input validator"
+        placeholder="Email"
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        required
+      />
+      <p className="validator-hint">Please enter a valid email.</p>
 
-        <label className="label">Password</label>
-        <input
-          type={showPassword ? "text" : "password"}
-          className="input validator"
-          placeholder="Password"
-          required
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
-        />
+      <label className="label">Password</label>
+      <input
+        type={showPassword ? "text" : "password"}
+        className="input validator"
+        placeholder="Password"
+        required
+        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+      />
 
-        <label className="label">Confirm Password</label>
+      <label className="label">Confirm Password</label>
+      <input
+        type={showPassword ? "text" : "password"}
+        className="input validator"
+        placeholder="Confirm Password"
+        required
+        onChange={(e) =>
+          setFormData({ ...formData, confirmPassword: e.target.value })
+        }
+      />
+      <div className="flex gap-2 items-center mt-2 justify-end">
+        <label htmlFor="showPassword" className="label">
+          Show Passwords
+        </label>
         <input
-          type={showPassword ? "text" : "password"}
-          className="input validator"
-          placeholder="Confirm Password"
-          required
-          onChange={(e) =>
-            setFormData({ ...formData, confirmPassword: e.target.value })
-          }
+          className="checkbox checkbox-accent rounded-full size-4"
+          type="checkbox"
+          name="showPassword"
+          id="showPassword"
+          onChange={(e) => setShowPassword(e.target.checked)}
         />
-        <div className="flex gap-1 items-center mt-2 justify-end">
-          <label htmlFor="showPassword" className="label">
-            Show Passwords
-          </label>
-          <input
-            className="checkbox checkbox-accent rounded-full"
-            type="checkbox"
-            name="showPassword"
-            id="showPassword"
-            onChange={(e) => setShowPassword(e.target.checked)}
-          />
-        </div>
+      </div>
 
-        <button className="btn btn-neutral mt-4" type="submit">
-          {loading ? "Creating Account..." : "Create Account"}
-        </button>
-      </fieldset>
-    </form>
+      <button className="btn btn-neutral mt-4" type="submit">
+        {loading ? "Creating Account..." : "Create Account"}
+      </button>
+    </fieldset>
   );
 };
 
