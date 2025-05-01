@@ -27,13 +27,6 @@ function App() {
     <>
       <TimerTicker />
       <main>
-        {user ? (
-          <>
-            <p>Welcome, {user.email}</p>
-          </>
-        ) : (
-          <p>Please login or register.</p>
-        )}
         <Layout>
           <Routes>
             <Route
