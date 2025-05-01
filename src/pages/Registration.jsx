@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useAuthStore from "../store/authStore";
+import { Link } from "react-router-dom";
 
 const blankForm = {
   displayName: "",
@@ -45,7 +46,7 @@ const Registration = () => {
       onSubmit={handleSubmit}
       className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
     >
-      <legend className="fieldset-legend">Register</legend>
+      <legend className="fieldset-legend">Registration</legend>
       <label className="label">Display Name</label>
       <input
         type="input"
@@ -106,6 +107,14 @@ const Registration = () => {
       <button className="btn btn-neutral mt-4" type="submit">
         {loading ? "Creating Account..." : "Create Account"}
       </button>
+      <div className="text-center">
+        <p className="text-base-content/60">
+          Already have an account?{" "}
+          <Link to="/login" className="link link-primary">
+            Sign in
+          </Link>
+        </p>
+      </div>
     </fieldset>
   );
 };

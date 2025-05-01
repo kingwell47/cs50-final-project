@@ -15,6 +15,14 @@ function App() {
     return () => unsub(); // clean up on unmount
   }, [checkAuth]);
 
+  if (loading && !user) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+  }
+
   return (
     <>
       <TimerTicker />
@@ -28,9 +36,18 @@ function App() {
         )}
         <Layout>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Registration />} />
+            <Route
+              path="/"
+              element={user ? <Dashboard /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/register"
+              element={!user ? <Registration /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/" />}
+            />
           </Routes>
         </Layout>
       </main>

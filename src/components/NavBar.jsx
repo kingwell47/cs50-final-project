@@ -5,24 +5,22 @@ const NavBar = () => {
   const { user, logout } = useAuthStore();
 
   return (
-    <nav className='navbar bg-base-100 shadow-sm'>
-      <div className='flex-1'>
-        <a className='btn btn-ghost text-xl'>daisyUI</a>
+    <nav className="navbar bg-base-100 shadow-sm">
+      <div className="flex-1">
+        <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
-      <div className='flex-none'>
-        <ul className='menu menu-horizontal px-1'>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
           {user && (
             <li>
-              <a>signedIn</a>
+              <a onClick={logout}>Logout</a>
             </li>
           )}
-          <li>
-            <a onClick={logout}>Logout</a>
-          </li>
+
           <li>
             <details>
               <summary>Parent</summary>
-              <ul className='bg-base-100 rounded-t-none p-2'>
+              <ul className="bg-base-100 rounded-t-none p-2">
                 <li>
                   <a>Link 1</a>
                 </li>

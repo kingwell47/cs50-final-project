@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import useAuthStore from "../store/authStore";
+import { Link } from "react-router-dom";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -57,6 +59,14 @@ const Login = () => {
       >
         {loading ? "Logging in..." : "Login"}
       </button>
+      <div className="text-center">
+        <p className="text-base-content/60">
+          Don&apos;t have an account?{" "}
+          <Link to="/register" className="link link-primary">
+            Create account
+          </Link>
+        </p>
+      </div>
     </fieldset>
   );
 };
