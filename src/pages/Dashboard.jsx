@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useHabitStore from "../store/habitStore";
 import useAuthStore from "../store/authStore";
 import AddHabitForm from "../components/AddHabitForm";
+import HabitCard from "../components/HabitCard";
 
 const Dashboard = () => {
   const [showForm, setShowForm] = useState(false);
@@ -51,6 +52,11 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+      <HabitCard
+        name="Programming Training"
+        completedDates={["2025-04-30", "2025-05-01", "2025-05-02"]}
+        frequency="Daily"
+      />
     </>
   );
 };
