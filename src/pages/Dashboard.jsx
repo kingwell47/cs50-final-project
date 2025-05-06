@@ -15,28 +15,25 @@ const Dashboard = () => {
     }
   }, [user, fetchHabits]);
 
-  const today = new Date().toISOString().split("T")[0]; // "YYYY-MM-DD"
   return (
     <>
       <div className="p-4">
         <h2 className="text-xl font-bold mb-4">Today's Habits</h2>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          habits.map((habit) => (
-            <div
-              key={habit.id}
-              className="flex items-center justify-between p-2 border rounded mb-2"
-            >
-              <span>{habit.name}</span>
-              <input
-                type="checkbox"
-                checked={habit.completedDates?.includes(today)}
-                onChange={() => markHabitComplete(habit.id, today)}
+        <div className="flex flex-col gap-4">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            habits.map((habit) => (
+              <HabitCard
+                key={habit.id}
+                id={habit.id}
+                name={habit.name}
+                completedDates={habit.completedDates}
+                frequency={habit.frequency}
               />
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </div>
       </div>
       <div className="p-4">
         <button
@@ -52,11 +49,6 @@ const Dashboard = () => {
           </div>
         )}
       </div>
-      <HabitCard
-        name="Programming Training"
-        completedDates={["2025-04-30", "2025-05-01", "2025-05-02"]}
-        frequency="Daily"
-      />
     </>
   );
 };

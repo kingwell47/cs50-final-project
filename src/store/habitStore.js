@@ -5,10 +5,13 @@ import {
   updateHabitStatus,
   deleteHabit,
 } from "../lib/habits";
+import { arrayUnion, arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { db } from "../lib/firebase";
 
 const useHabitStore = create((set, get) => ({
   habits: [],
   loading: false,
+  checkingLoad: false,
 
   fetchHabits: async (userId) => {
     set({ loading: true });
@@ -38,6 +41,33 @@ const useHabitStore = create((set, get) => ({
     } catch (error) {
       console.error("Failed to mark habit complete:", error);
     }
+  },
+
+  toggleHabitDate: async (habitId, dateStr, isCompleted) => {
+    set({ checkingLoad: true });
+    const habitRef = doc(db, "habits", habitId);
+    // Update Firestore
+    await updateDoc(habitRef, {
+      completedDates: isCompleted ? arrayRemove(dateStr) : arrayUnion(dateStr),
+    });
+
+    // Update local state
+    set((state) => {
+      const updatedHabits = state.habits.map((habit) => {
+        if (habit.id !== habitId) return habit;
+
+        const updatedDates = isCompleted
+          ? habit.completedDates.filter((d) => d !== dateStr)
+          : [...habit.completedDates, dateStr];
+
+        return {
+          ...habit,
+          completedDates: updatedDates,
+        };
+      });
+
+      return { habits: updatedHabits, checkingLoad: false };
+    });
   },
 
   removeHabit: async (habitId) => {
