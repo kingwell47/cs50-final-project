@@ -25,11 +25,14 @@ const useHabitStore = create((set, get) => ({
   },
 
   addHabit: async (habitData, userId) => {
+    set({ loading: true });
     try {
       await saveHabit(habitData, userId);
       await get().fetchHabits(userId);
     } catch (error) {
       console.error("Failed to add habit:", error);
+    } finally {
+      set({ loading: false });
     }
   },
 
@@ -44,7 +47,6 @@ const useHabitStore = create((set, get) => ({
   },
 
   toggleHabitDate: async (habitId, dateStr, isCompleted) => {
-    set({ checkingLoad: true });
     const habitRef = doc(db, "habits", habitId);
     // Update Firestore
     await updateDoc(habitRef, {
@@ -66,17 +68,20 @@ const useHabitStore = create((set, get) => ({
         };
       });
 
-      return { habits: updatedHabits, checkingLoad: false };
+      return { habits: updatedHabits };
     });
   },
 
   removeHabit: async (habitId) => {
+    set({ loading: true });
     try {
       await deleteHabit(habitId);
       const userId = get().habits[0]?.userId;
       if (userId) await get().fetchHabits(userId);
     } catch (error) {
       console.error("Failed to delete habit:", error);
+    } finally {
+      set({ loading: false });
     }
   },
 }));

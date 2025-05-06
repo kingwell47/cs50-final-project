@@ -22,7 +22,7 @@ const Dashboard = () => {
         <div className="flex flex-col gap-4">
           {loading ? (
             <p>Loading...</p>
-          ) : (
+          ) : habits.length > 0 ? (
             habits.map((habit) => (
               <HabitCard
                 key={habit.id}
@@ -32,14 +32,13 @@ const Dashboard = () => {
                 frequency={habit.frequency}
               />
             ))
+          ) : (
+            <p>No habits found</p>
           )}
         </div>
       </div>
       <div className="p-4">
-        <button
-          onClick={() => setShowForm(true)}
-          className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
+        <button onClick={() => setShowForm(true)} className="btn btn-primary">
           + Add Habit
         </button>
 
