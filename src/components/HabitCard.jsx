@@ -7,16 +7,24 @@ const HabitCard = ({ id, name, completedDates, frequency }) => {
 
   const today = new Date();
 
+  // Sunday-start weekday labels
+  const weekdayLabels = ["S", "M", "T", "W", "T", "F", "S"];
+
   const daysArray = [...Array(15)].map((_, i) => {
     const date = new Date();
     date.setDate(today.getDate() - 14 + i);
     const dateStr = date.toISOString().split("T")[0];
     return {
       label: date.getDate(),
-      completed: completedDates.includes(dateStr),
       dateStr,
+      weekday: date.getDay(), // 0 (Sun) to 6 (Sat)
+      completed: completedDates.includes(dateStr),
     };
   });
+
+  // Pad with empty slots so calendar starts on correct weekday
+  const firstDayWeekday = daysArray[0].weekday;
+  const paddedDays = [...Array(firstDayWeekday).fill(null), ...daysArray];
 
   const handleClick = async (day) => {
     setLoadingDay(day.dateStr);
@@ -44,12 +52,12 @@ const HabitCard = ({ id, name, completedDates, frequency }) => {
           </div>
           <div className="card-actions justify-end">
             <button
-              className="btn btn-square btn-xs"
+              className="btn btn-circle btn-xs bg-warning-content border-warning"
               onClick={() => removeHabit(id)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="size-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -64,27 +72,35 @@ const HabitCard = ({ id, name, completedDates, frequency }) => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-2 justify-evenly justify-items-center items-center content-evenly w-full">
-          {daysArray.map((day, index) => (
-            <button
-              key={index}
-              onClick={() => handleClick(day)}
-              className={`w-8 h-8 flex items-center justify-center rounded-full border ${
-                day.completed
-                  ? "bg-white text-black font-bold"
-                  : "border-zinc-700 text-zinc-400"
-              }`}
-              disabled={loadingDay === day.dateStr}
-            >
-              {loadingDay === day.dateStr ? (
-                <span className="loading loading-ring loading-lg text-primary"></span>
-              ) : day.completed ? (
-                "✓"
-              ) : (
-                day.label
-              )}
-            </button>
+        {/* Day headers */}
+        <div className="grid grid-cols-7 gap-1 text-center text-xs text-gray-400 mb-1">
+          {weekdayLabels.map((label, i) => (
+            <div key={i}>{label}</div>
           ))}
+        </div>
+        <div className="grid grid-cols-7 gap-1 justify-evenly justify-items-center items-center content-evenly w-full">
+          {paddedDays.map((day, index) =>
+            day ? (
+              <button
+                key={index}
+                onClick={() => handleClick(day)}
+                className={`w-8 h-8 flex items-center justify-center rounded-full border text-sm transition duration-150 ${
+                  day.completed
+                    ? "bg-primary text-base-content font-bold"
+                    : "border-zinc-700 text-zinc-400 hover:border-accent"
+                }`}
+                disabled={loadingDay === day.dateStr}
+              >
+                {loadingDay === day.dateStr ? (
+                  <span className="loading loading-ring loading-lg text-primary"></span>
+                ) : (
+                  day.label
+                )}
+              </button>
+            ) : (
+              <div key={index} className="w-8 h-8" />
+            )
+          )}
         </div>
       </div>
     </div>
