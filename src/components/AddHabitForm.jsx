@@ -2,8 +2,8 @@ import { useState } from "react";
 import useHabitStore from "../store/habitStore";
 import useAuthStore from "../store/authStore";
 
-const AddHabitForm = ({ onClose }) => {
-  const { addHabit } = useHabitStore();
+const AddHabitForm = () => {
+  const { addHabit, loading } = useHabitStore();
   const { user } = useAuthStore();
 
   const [name, setName] = useState("");
@@ -19,10 +19,14 @@ const AddHabitForm = ({ onClose }) => {
       frequency,
     };
 
-    await addHabit(habitData, user.uid);
-    setName("");
-    setFrequency("daily");
-    if (onClose) onClose();
+    try {
+      await addHabit(habitData, user.uid);
+      setName("");
+      setFrequency("daily");
+      document.getElementById("add_habit_modal").close();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -52,11 +56,8 @@ const AddHabitForm = ({ onClose }) => {
         </select>
       </div>
 
-      <button
-        type='submit'
-        onClick={() => document.getElementById("add_habit_modal").close()}
-        className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition'>
-        Add Habit
+      <button type='submit' className='btn btn-primary' disabled={loading}>
+        {loading ? "Adding..." : "Add Habit"}
       </button>
     </form>
   );

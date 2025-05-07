@@ -5,7 +5,6 @@ import AddHabitForm from "../components/AddHabitForm";
 import HabitCard from "../components/HabitCard";
 
 const Dashboard = () => {
-  const [showForm, setShowForm] = useState(false);
   const { habits, fetchHabits, markHabitComplete, loading } = useHabitStore();
   const { user } = useAuthStore();
 
@@ -21,10 +20,9 @@ const Dashboard = () => {
         <div className='flex items-center justify-between gap-4 mb-4 w-full'>
           <h2 className='text-xl font-bold'>Today's Habits</h2>
           <button
-            className='btn'
+            className='btn btn-primary btn-sm'
             onClick={() => {
               document.getElementById("add_habit_modal").showModal();
-              setShowForm(!showForm);
             }}>
             + Add Habit
           </button>
@@ -34,19 +32,17 @@ const Dashboard = () => {
             <div className='modal-box'>
               <form method='dialog'>
                 {/* if there is a button in form, it will close the modal */}
-                <button
-                  className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'
-                  onClick={() => setShowForm(false)}>
+                <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>
                   ✕
                 </button>
               </form>
-              <AddHabitForm onClose={() => setShowForm(false)} />
+              <AddHabitForm />
             </div>
           </dialog>
         </div>
         <div className='flex flex-col gap-4 items-center justify-center w-full'>
           {loading ? (
-            <div className='skeleton h-60 w-full'></div>
+            <div className='skeleton h-60 w-92' />
           ) : habits.length > 0 ? (
             habits.map((habit) => (
               <HabitCard
@@ -61,19 +57,6 @@ const Dashboard = () => {
             <p>No habits found</p>
           )}
         </div>
-      </div>
-      <div className='p-4'>
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className='btn btn-primary'>
-          + Add Habit
-        </button>
-
-        {showForm && (
-          <div className='mb-4'>
-            <AddHabitForm onClose={() => setShowForm(false)} />
-          </div>
-        )}
       </div>
     </>
   );
