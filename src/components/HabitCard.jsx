@@ -64,7 +64,9 @@ const HabitCard = ({ id, name, completedDates, frequency }) => {
         <div className='card-body'>
           <div className='flex justify-between w-full'>
             <div className='flex justify-between items-start mb-2 w-full mr-2'>
-              <h2 className='card-title'>{name}</h2>
+              <h2 className='card-title wrap-normal md:wrap-anywhere'>
+                {name}
+              </h2>
               <div className='text-right'>
                 <p className='text-sm text-gray-300'>{progressCount} days</p>
                 <p className='text-xs text-cyan-400'>{frequency}</p>
