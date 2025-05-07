@@ -17,11 +17,11 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="p-4">
-        <h2 className="text-xl font-bold mb-4">Today's Habits</h2>
-        <div className="flex flex-col gap-4">
+      <div className='p-4 w-full md:max-w-xs flex flex-col items-center'>
+        <h2 className='text-xl font-bold mb-4'>Today's Habits</h2>
+        <div className='flex flex-col gap-4'>
           {loading ? (
-            <p>Loading...</p>
+            <div className='skeleton h-60 w-full'></div>
           ) : habits.length > 0 ? (
             habits.map((habit) => (
               <HabitCard
@@ -37,13 +37,13 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      <div className="p-4">
-        <button onClick={() => setShowForm(true)} className="btn btn-primary">
+      <div className='p-4'>
+        <button onClick={() => setShowForm(true)} className='btn btn-primary'>
           + Add Habit
         </button>
 
         {showForm && (
-          <div className="mb-4">
+          <div className='mb-4'>
             <AddHabitForm onClose={() => setShowForm(false)} />
           </div>
         )}
