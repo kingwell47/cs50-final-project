@@ -18,8 +18,33 @@ const Dashboard = () => {
   return (
     <>
       <div className='p-4 w-full md:max-w-xs flex flex-col items-center'>
-        <h2 className='text-xl font-bold mb-4'>Today's Habits</h2>
-        <div className='flex flex-col gap-4'>
+        <div className='flex items-center justify-between gap-4 mb-4 w-full'>
+          <h2 className='text-xl font-bold'>Today's Habits</h2>
+          <button
+            className='btn'
+            onClick={() => {
+              document.getElementById("add_habit_modal").showModal();
+              setShowForm(!showForm);
+            }}>
+            + Add Habit
+          </button>
+          <dialog
+            id='add_habit_modal'
+            className='modal modal-bottom sm:modal-middle'>
+            <div className='modal-box'>
+              <form method='dialog'>
+                {/* if there is a button in form, it will close the modal */}
+                <button
+                  className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'
+                  onClick={() => setShowForm(false)}>
+                  ✕
+                </button>
+              </form>
+              <AddHabitForm onClose={() => setShowForm(false)} />
+            </div>
+          </dialog>
+        </div>
+        <div className='flex flex-col gap-4 items-center justify-center w-full'>
           {loading ? (
             <div className='skeleton h-60 w-full'></div>
           ) : habits.length > 0 ? (
@@ -38,7 +63,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='p-4'>
-        <button onClick={() => setShowForm(true)} className='btn btn-primary'>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className='btn btn-primary'>
           + Add Habit
         </button>
 
