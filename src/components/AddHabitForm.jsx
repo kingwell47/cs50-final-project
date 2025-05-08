@@ -30,16 +30,16 @@ const AddHabitForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} method='dialog' className='p-4 space-y-4'>
-      <h2 className='text-lg font-semibold'>Add New Habit</h2>
+    <form onSubmit={handleSubmit} method="dialog" className="p-4 space-y-4">
+      <h2 className="text-lg font-semibold">Add New Habit</h2>
       <div>
-        <label className='label block text-sm font-medium mb-1'>
+        <label className="label block text-sm font-medium mb-1">
           Habit Name
         </label>
         <input
-          type='text'
-          className='input w-full p-2'
-          placeholder='e.g. Drink water'
+          type="text"
+          className="input w-full p-2"
+          placeholder="e.g. Drink water"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -49,46 +49,36 @@ const AddHabitForm = () => {
       </div>
 
       <div>
-        <label className='label block text-sm font-medium mb-1'>
+        <label className="label block text-sm font-medium mb-1">
           Frequency
         </label>
 
-        <ul className='flex gap-4'>
-          <li className='flex justify-start items-center gap-2'>
+        <ul className="flex gap-4">
+          <li className="flex justify-start items-center gap-2">
             <input
-              type='radio'
-              value='Daily'
-              name='frequency'
-              className='radio radio-primary'
+              type="radio"
+              value="Daily"
+              name="frequency"
+              className="radio radio-primary"
               defaultChecked
               onChange={(e) => setFrequency(e.target.value)}
             />
-            <span className='label'>Daily</span>
+            <span className="label">Daily</span>
           </li>
-          <li className='flex justify-start items-center gap-2'>
+          <li className="flex justify-start items-center gap-2">
             <input
-              type='radio'
-              value='Weekly'
-              name='frequency'
-              className='radio radio-primary'
+              type="radio"
+              value="Weekdays"
+              name="frequency"
+              className="radio radio-primary"
               onChange={(e) => setFrequency(e.target.value)}
             />
-            <span className='label'>Weekly</span>
-          </li>
-          <li className='flex justify-start items-center gap-2'>
-            <input
-              type='radio'
-              value='Weekly'
-              name='frequency'
-              className='radio radio-primary'
-              onChange={(e) => setFrequency(e.target.value)}
-            />
-            <span className='label'>Monthly</span>
+            <span className="label">Weekdays</span>
           </li>
         </ul>
       </div>
 
-      <button type='submit' className='btn btn-primary' disabled={loading}>
+      <button type="submit" className="btn btn-primary" disabled={loading}>
         {loading ? "Adding..." : "Add Habit"}
       </button>
     </form>
