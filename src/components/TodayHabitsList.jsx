@@ -32,7 +32,7 @@ const TodayHabitsList = ({ habits, onToggleComplete }) => {
   };
 
   return (
-    <div className='card w-96 bg-accent-content card-xl shadow-sm p-4'>
+    <div className='card w-full bg-accent-content card-xl shadow-sm p-4'>
       <h2 className='card-title'>Habits for Today</h2>
       {loading ? (
         <span className='loading loading-bars loading-md'></span>

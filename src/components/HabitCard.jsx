@@ -60,7 +60,7 @@ const HabitCard = ({ id, name, completedDates, frequency }) => {
           </svg>
         </button>
       </div>
-      <div className='card bg-neutral-700 w-96 shadow-sm'>
+      <div className='card bg-neutral-700 w-full shadow-sm'>
         <div className='card-body'>
           <div className='flex justify-between w-full'>
             <div className='flex justify-between items-start mb-2 w-full mr-2'>

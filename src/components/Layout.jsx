@@ -15,9 +15,11 @@ const Layout = ({ children }) => {
           </div>
         </div>
       )}
-      <div className='p-4 flex flex-col justify-center items-center'>
-        <GlobalTimer />
-        {children}
+      <div className='flex flex-col w-full items-center justify-center pt-4'>
+        <div className='flex flex-col justify-center items-center w-90'>
+          <GlobalTimer />
+          {children}
+        </div>
       </div>
     </>
   );

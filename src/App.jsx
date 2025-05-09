@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <TimerTicker />
-      <main className='w-full'>
+      <main className='w-screen'>
         <Layout>
           <Routes>
             <Route
