@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='flex items-center justify-between gap-4 mt-4 w-full md:max-w-96'>
+      <div className='flex items-center justify-between gap-4 px-4 mt-4 w-full md:max-w-96'>
         <div className='tabs tabs-box'>
           <input
             type='radio'
