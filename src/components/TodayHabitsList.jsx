@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import useHabitStore from "../store/habitStore";
 
 const TodayHabitsList = ({ habits, onToggleComplete }) => {
-  const { toggleHabitDate } = useHabitStore(); // fallback if no prop
+  const { toggleHabitDate, loading } = useHabitStore(); // fallback if no prop
   const today = useMemo(() => new Date().toISOString().split("T")[0], []);
   const weekday = useMemo(() => new Date().getDay(), []);
 
@@ -32,25 +32,30 @@ const TodayHabitsList = ({ habits, onToggleComplete }) => {
   };
 
   return (
-    <div className="card w-96 bg-accent-content card-xl shadow-sm p-4">
-      <h2 className="card-title">Habits for Today</h2>
-      {todayHabits.length === 0 ? (
-        <p className="text-neutral-500">No habits scheduled for today.</p>
+    <div className='card w-96 bg-accent-content card-xl shadow-sm p-4'>
+      <h2 className='card-title'>Habits for Today</h2>
+      {loading ? (
+        <span className='loading loading-bars loading-md'></span>
       ) : (
-        todayHabits.map((habit) => (
-          <label
-            key={habit.id}
-            className="flex items-center justify-between p-2 border-b last:border-none label"
-          >
-            <span className="text-content">{habit.name}</span>
-            <input
-              type="checkbox"
-              checked={habit.completedDates.includes(today)}
-              onChange={() => handleToggle(habit)}
-              className="checkbox checkbox-primary"
-            />
-          </label>
-        ))
+        <>
+          {todayHabits.length === 0 ? (
+            <p className='text-neutral-500'>No habits scheduled for today.</p>
+          ) : (
+            todayHabits.map((habit) => (
+              <label
+                key={habit.id}
+                className='flex items-center justify-between p-2 border-b last:border-none label'>
+                <span className='text-content'>{habit.name}</span>
+                <input
+                  type='checkbox'
+                  checked={habit.completedDates.includes(today)}
+                  onChange={() => handleToggle(habit)}
+                  className='checkbox checkbox-primary'
+                />
+              </label>
+            ))
+          )}
+        </>
       )}
     </div>
   );
