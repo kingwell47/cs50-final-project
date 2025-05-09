@@ -17,8 +17,8 @@ function App() {
 
   if (loading && !user) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-xl"></span>
+      <div className='flex items-center justify-center h-screen'>
+        <span className='loading loading-bars loading-xl'></span>
       </div>
     );
   }
@@ -26,20 +26,20 @@ function App() {
   return (
     <>
       <TimerTicker />
-      <main>
+      <main className='w-full'>
         <Layout>
           <Routes>
             <Route
-              path="/"
-              element={user ? <Dashboard /> : <Navigate to="/login" />}
+              path='/'
+              element={user ? <Dashboard /> : <Navigate to='/login' />}
             />
             <Route
-              path="/register"
-              element={!user ? <Registration /> : <Navigate to="/" />}
+              path='/register'
+              element={!user ? <Registration /> : <Navigate to='/' />}
             />
             <Route
-              path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
+              path='/login'
+              element={!user ? <Login /> : <Navigate to='/' />}
             />
           </Routes>
         </Layout>

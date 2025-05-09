@@ -8,8 +8,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <NavBar />
-      {error && <p>{error}</p>}
-      <div className="p-4 flex flex-col justify-center items-center">
+      {error && (
+        <div className='toast toast-top toast-center'>
+          <div className='alert alert-error'>
+            <span className='text-base-content'>test</span>
+          </div>
+        </div>
+      )}
+      <div className='p-4 flex flex-col justify-center items-center'>
         <GlobalTimer />
         {children}
       </div>
